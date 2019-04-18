@@ -17,13 +17,19 @@ c.execute('''
 ''')
 #creates a table called project
 
-q = ''' INSERT INTO project(name, locality, date) VALUES ("flowers", "wwc", "2018-04-15") '''
-q = ''' SELECT * FROM project '''
+
+q =  f" INSERT INTO project(name, locality, date) VALUES ('{val}', 'wwc', '2019-04-15') "
+c.execute(q)
 #puts information into project
 
+q = ''' SELECT * FROM project '''
 c.execute(q)
-c.fetchall()
-#gets info from table
+#selects all info
+
+results = c.fetchall()
+for eachrow in results:
+    print(eachrow)
+#prints all info in data
 
 c.close()
 
