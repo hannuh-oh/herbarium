@@ -4,8 +4,9 @@ conn = sqlite3.connect('Herbarium.sqlite3')
 c = conn.cursor()
 #creates database and connects file to it
 
-val = input("what name?")
-print(val)
+nameVal = input("what name?")
+localVal = input("where did you find it?")
+dateVal = input("when did you find it?")
 
 c.execute('''
  CREATE TABLE IF NOT EXISTS project(
@@ -18,7 +19,7 @@ c.execute('''
 #creates a table called project
 
 
-q =  f" INSERT INTO project(name, locality, date) VALUES ('{val}', 'wwc', '2019-04-15') "
+q =  f" INSERT INTO project(name, locality, date) VALUES ('{nameVal}', '{localVal}', '{dateVal}') "
 c.execute(q)
 #puts information into project
 

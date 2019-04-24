@@ -1,0 +1,46 @@
+# info from this webiste: http://effbot.org/tkinterbook/button.htm
+# and dis one: https://yagisanatode.com/2018/02/26/how-to-display-and-entry-in-a-label-tkinter-python-3/
+
+#set up screen
+from tkinter import *
+screen = Tk()
+
+
+#defines the size, position, and color
+screen.geometry('600x600')
+screen.geometry('+425+125')
+screen.configure(background = 'orchid')
+screen.title("Herbarium")
+
+
+#is my welcome to thee herbarium text. Doesn't do anything, looks nice.
+welcomeLabel = Label(screen, text =  "Welcome to the Herbarium!", bg = 'orchid')
+welcomeLabel.config(font = ("georgia", 20, "italic bold"))
+welcomeLabel.pack()
+
+
+
+#function that controls what search button does
+def searchAction():
+    itWorked = 'heello! this worked!'
+    return itWorked
+
+
+#function that control what enter button does
+def enterAction():
+    newEntry = 'cool find'
+    return newEntry
+
+
+#working on my search button
+searchButton = Button(screen, text = "Search", command = searchAction())
+searchButton.pack()
+
+
+#working on my enteer button
+enterButton = Button(screen, text = "New Entry", command = enterAction())
+enterButton.pack()
+
+
+#i don't exactly know what this does
+screen.mainloop()
