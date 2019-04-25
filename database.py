@@ -1,13 +1,19 @@
-import sqlite3
+#my herbarium database!
 
+
+#creates database and connects file to it
+import sqlite3
 conn = sqlite3.connect('Herbarium.sqlite3')
 c = conn.cursor()
-#creates database and connects file to it
 
+
+#asks user for info, will later store it in database
 nameVal = input("what name?")
 localVal = input("where did you find it?")
 dateVal = input("when did you find it?")
 
+
+#creates a table called project
 c.execute('''
  CREATE TABLE IF NOT EXISTS project(
  id integer PRIMARY KEY,
@@ -16,21 +22,21 @@ c.execute('''
  date text 
  );
 ''')
-#creates a table called project
 
 
+#puts information into project
 q =  f" INSERT INTO project(name, locality, date) VALUES ('{nameVal}', '{localVal}', '{dateVal}') "
 c.execute(q)
-#puts information into project
-
 q = ''' SELECT * FROM project '''
 c.execute(q)
-#selects all info
 
+
+#prints all info in data
 results = c.fetchall()
 for eachrow in results:
     print(eachrow)
-#prints all info in data
 
+
+#closes the connection
 c.close()
 

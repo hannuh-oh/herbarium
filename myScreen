@@ -6,11 +6,13 @@ from tkinter import *
 screen = Tk()
 
 
+
 #defines the size, position, and color
-screen.geometry('600x600')
+screen.geometry('600x400')
 screen.geometry('+425+125')
 screen.configure(background = 'orchid')
 screen.title("Herbarium")
+
 
 
 #is my welcome to thee herbarium text. Doesn't do anything, looks nice.
@@ -26,10 +28,27 @@ def searchAction():
     return itWorked
 
 
+
 #function that control what enter button does
 def enterAction():
     newEntry = 'cool find'
     return newEntry
+
+
+
+#function that activates entry bar when enter button is pressed
+def pressedEntry():
+    return none
+
+
+
+#function that activates search bar when when search button is pressed
+def pressedSearch():
+    if searchButton is True:
+        textEntry = Entry(screen, width = 20, bg = 'white')
+        textEntry.pack()
+    return none
+
 
 
 #working on my search button
@@ -37,9 +56,11 @@ searchButton = Button(screen, text = "Search", command = searchAction())
 searchButton.pack()
 
 
-#working on my enteer button
+
+#working on my enter button
 enterButton = Button(screen, text = "New Entry", command = enterAction())
 enterButton.pack()
+
 
 
 #i don't exactly know what this does
