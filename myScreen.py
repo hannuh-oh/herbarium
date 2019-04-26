@@ -30,9 +30,15 @@ def searchAction():
 
 
 #function that control what enter button does
-def enterAction():
+def enteryAction():
     newEntry = 'cool find'
     return newEntry
+
+
+
+#function that activates search bar when when search button is pressed
+def pressedSearch():
+    return none
 
 
 
@@ -42,13 +48,9 @@ def pressedEntry():
 
 
 
-#function that activates search bar when when search button is pressed
-def pressedSearch():
-    if searchButton is True:
-        textEntry = Entry(screen, width = 20, bg = 'white')
-        textEntry.pack()
-    return none
-
+#where you will type for the search
+searchEntry = Entry(screen, width = 20, bg = 'white')
+searchEntry.pack()
 
 
 #working on my search button
@@ -56,15 +58,20 @@ searchButton = Button(screen, text = "Search", command = searchAction())
 searchButton.pack()
 
 
+#where you will type for the search
+newEntry = Entry(screen, width = 20, bg = 'white')
+newEntry.pack()
+
 
 #working on my enter button
-enterButton = Button(screen, text = "New Entry", command = enterAction())
-enterButton.pack()
+enteryButton = Button(screen, text = "New Entry", command = enteryAction())
+enteryButton.pack()
 
 
-#entry bar
-entryBar = Entry(screen, width = 20)
-entryBar.pack()
+#display area
+displayArea = Label(screen, width = 30, height = 10, text =  "display area")
+displayArea.pack()
+
 
 
 #i don't exactly know what this does
