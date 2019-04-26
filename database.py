@@ -26,13 +26,15 @@ def dateVal():
 
 #creates a table called project
 c.execute('''
- CREATE TABLE IF NOT EXISTS project(
- id integer PRIMARY KEY,
- name text NOT NULL,
- locality text,
- date text 
- );
+CREATE TABLE IF NOT EXISTS project(
+id integer PRIMARY KEY,
+name text NOT NULL,
+locality text,
+date text 
+);
 ''')
+
+conn.commit()
 
 #puts information into project
 q =  f" INSERT INTO project(name, locality, date) VALUES ('{nameVal()}', '{localVal()}', '{dateVal()}') "

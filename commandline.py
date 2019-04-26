@@ -3,9 +3,26 @@ import database
 """
 This is my herbarium database!!
 what does it do?
-1. prompt user for command
-2.
-3. if command is search jump to 
+
+prompt:
+    ask for the command
+    if the command is "search" jump to search:
+    if the command is "enter" jump to enter:
+    print the results
+    jump to prompt:
+
+search:
+    ask user for query
+    create the query
+    execute the query
+    return the results
+
+enter:
+    ask the user for information
+    store information in database
+    jump to search:
+    
+     
 """
 
 print('hello!')
@@ -47,31 +64,5 @@ def main():
 
 """
 
-def askUserForInformation(database):
-    while True:
-        name = askUserForPlantName()
-        locality = askUserForLocality()
-        date = askUserForDate()
-        saveVariablesToDatabase(name, locality, date, database)
-    return 0
 
-def askUserForPlantName():
-    return input("What is the plant's name?")
-
-def askUserForLocality():
-    return input("Where did you find this plant?")
-
-def askUserForDate():
-    return input("What is the date?")
-
-def saveVariablesToDatabase(name, locality, date, database):
-    """
-    1. creating query
-    2. execute query
-    """
-
-    query = f" INSERT INTO project(name, locality, date) VALUES ('{name}', '{locality}', '{date}') "
-    database.execute(query)
-
-    return 0
 
