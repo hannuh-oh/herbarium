@@ -10,12 +10,13 @@ def main():
     loop back to prompt
     :return:
     """
-
     connection = sqlite3.connect('Herbarium.sqlite3')
     cursor = connection.cursor()
     createTable(cursor, connection)
     while True:
         promptUserForCommand(cursor)
+        connection.commit()
+
 
 def createTable(cursor, connection):
     """
@@ -23,7 +24,6 @@ def createTable(cursor, connection):
     takes in name, locality, date
     :return:
     """
-
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS project(
     id integer PRIMARY KEY,
@@ -32,8 +32,9 @@ def createTable(cursor, connection):
     date text 
     );
     ''')
-
     connection.commit()
+    return
+
 
 def promptUserForCommand(cursor):
     """
@@ -45,15 +46,16 @@ def promptUserForCommand(cursor):
     :return:
     """
     command = input("Press 'E' to enter 'S' to search 'D' to delete 'X' to exit").lower()
-    if(command == 'e'):
+    if command == 'e':
         userEnterNewPlant(cursor)
-    elif(command == 's'):
+    elif command == 's':
         userSearchDatabase(cursor)
-    elif(command == 'd'):
+    elif command == 'd':
         userDeleteEntry(cursor)
-    elif(command == 'x'):
+    elif command == 'x':
         userExitProgram(cursor)
     return
+
 
 def userEnterNewPlant(cursor):
     """
@@ -68,30 +70,36 @@ def userEnterNewPlant(cursor):
     locality = input("Where did you find this plant?")
     date = input("What is the date?")
     saveVariablesToDatabase(name, locality, date, cursor)
-    searchResult = searchDatabase(name, cursor)
-    print(searchResult)
-    return 
+    search_result = searchDatabase(name, cursor)
+    print(search_result)
+    return
 
 
 def userSearchDatabase(cursor):
     """
     ask user to enter search word
     get result using searchDatabase
+    no entry returns all
     print result
     :return:
     """
-    searchTerm = input("What are you searching for?")
-    result = searchDatabase(searchTerm, cursor)
+    search_term = input("What are you searching for?")
+    if search_term == "":
+        all_entries = cursor.fetchall()
+        for eachRow in all_entries:
+            print(eachRow)
+    result = searchDatabase(search_term, cursor)
     print(result)
     return
 
-def searchDatabase(searchTerm, cursor):
+
+def searchDatabase(search_term, cursor):
     """
     create query to select from database
     execute query
     :return: result
     """
-    query = f" SELECT '{searchTerm}' FROM project"
+    query = f" SELECT name, locality, date, id FROM project WHERE name='{search_term}'"
     cursor.execute(query)
     result = cursor.fetchone()
     return result
@@ -107,26 +115,17 @@ def userDeleteEntry(cursor):
 
     :return:
     """
-    deleteTerm = input("What do you want to delete?")
-    result = searchDatabase(deleteTerm, cursor)
+    delete_term = input("What do you want to delete?")
+    result = searchDatabase(delete_term, cursor)
     print(result)
+    if result is None:
+        return
     confirmation = input("Do you wish to proceed? Y/N").lower()
     if confirmation == 'y':
-        deleteQuery = f" DELETE FROM project WHERE ID = '{result}'"
-        cursor.execute(deleteQuery)
+        delete_query = f" DELETE FROM project WHERE id = '{result[-1]}'"
+        cursor.execute(delete_query)
 
     return
-
-
-def userExitProgram(cursor):
-    """
-    close connection
-    exits the program
-    :return:
-    """
-
-    cursor.close()
-    sys.exit()
 
 
 def saveVariablesToDatabase(name, locality, date, cursor):
@@ -140,5 +139,50 @@ def saveVariablesToDatabase(name, locality, date, cursor):
 
     return 0
 
+
+def userExitProgram(cursor):
+    """
+    close connection
+    exits the program
+    :return:
+    """
+
+    cursor.close()
+    sys.exit()
+
 main()
+
+"""
+herbarium database interactive window
+
+1.set up screen
+    - set up background in pink.
+    - make it a nice lil box
+    - display "welcome to the herbarium!" 
+
+2. userinput
+    -
+    1. search
+        - prompt user to type search word in box
+        - store that info to a variable?
+        - press search
+            -equivalent to pressing 's'
+        - access that info in database
+        - print that info to display area
+    2. enter
+        - prompt user to enter 
+            - name
+            - locality
+            - date
+        store that info in database 
+    3. delete
+        -
+6. display 
+
+7. exit
+
+
+"""
+
+
 

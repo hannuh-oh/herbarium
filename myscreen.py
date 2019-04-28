@@ -30,7 +30,7 @@ def searchAction():
 
 
 #function that control what enter button does
-def enteryAction():
+def entryAction():
     newEntry = 'cool find'
     return newEntry
 
@@ -59,20 +59,45 @@ searchButton.pack()
 
 
 #where you will type for the search
-newEntry = Entry(screen, width = 20, bg = 'white')
+newEntry = Entry(screen, width=20, bg='white')
 newEntry.pack()
 
 
 #working on my enter button
-enteryButton = Button(screen, text = "New Entry", command = enteryAction())
-enteryButton.pack()
+entryButton = Button(screen, text="New Entry", command=entryAction())
+entryButton.pack()
 
 
 #display area
-displayArea = Label(screen, width = 30, height = 10, text =  "display area")
+displayArea = Label(screen, width=30, height=10, text="display area")
 displayArea.pack()
 
 
 
 #i don't exactly know what this does
 screen.mainloop()
+
+"""
+okay. what do i want to do?
+
+1.set up screen
+ - set up background in pink.
+ - make it a nice lil box
+ - display "welcome to the herbarium!" 
+
+2. userinput
+    -
+    1. search
+        -type search word in box
+        -press search
+        
+    2. enter
+        -
+    3. delete
+        -
+6. display 
+
+7. exit
+
+
+"""
