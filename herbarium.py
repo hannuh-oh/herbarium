@@ -1,5 +1,7 @@
+from tkinter import *
 import sqlite3
 import sys
+
 
 def main():
     """
@@ -54,6 +56,8 @@ def promptUserForCommand(cursor):
         userDeleteEntry(cursor)
     elif command == 'x':
         userExitProgram(cursor)
+    elif command == 'w':
+        userDisplayWindow(cursor)
     return
 
 
@@ -85,11 +89,12 @@ def userSearchDatabase(cursor):
     """
     search_term = input("What are you searching for?")
     if search_term == "":
-        all_entries = cursor.fetchall()
-        for eachRow in all_entries:
-            print(eachRow)
-    result = searchDatabase(search_term, cursor)
-    print(result)
+        result = returnAllEntries(cursor)
+        for each_entry in result:
+            print(each_entry)
+    else:
+        result = searchDatabase(search_term, cursor)
+        print(result)
     return
 
 
@@ -99,11 +104,23 @@ def searchDatabase(search_term, cursor):
     execute query
     :return: result
     """
-    query = f" SELECT name, locality, date, id FROM project WHERE name='{search_term}'"
+    query = f"SELECT name, locality, date, id FROM project WHERE name='{search_term}'"
     cursor.execute(query)
     result = cursor.fetchone()
     return result
 
+def returnAllEntries(cursor):
+    """
+    query to search everything in database
+    execute query
+    returns all entries
+    :param cursor:
+    :return:
+    """
+    query = "SELECT * FROM project"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    return result
 
 def userDeleteEntry(cursor):
     """
@@ -150,39 +167,128 @@ def userExitProgram(cursor):
     cursor.close()
     sys.exit()
 
+def userDisplayWindow(cursor):
+    """
+    call set up screen
+    call user interface elements
+    call display screen
+    """
+    screen = setUpScreen()
+    configureInterfaceElements(screen)
+    displayScreen(screen)
+
+    return
+
+def setUpScreen():
+    """
+    setup screen
+    create window
+    define size
+    define color
+    create title
+    """
+    screen = Tk()
+    screen.geometry('600x400')
+    screen.geometry('+425+125')
+    screen.configure(background = 'orchid')
+    screen.title("Herbarium")
+    return screen
+
+def configureInterfaceElements(screen):
+    """
+    configure welcome label
+    configure text entry box
+    configure new entry button
+    configure search text entry box
+    configure search button
+    configure display area
+    :return:
+    """
+    configureWelcomeLabel(screen)
+    newEntry = configureTextEntry(screen)
+    newButton = configureButton(screen, "New Entry", handleEnterAction(newEntry))
+    searchEntry = configureTextEntry(screen)
+    searchButton = configureButton(screen, "Search", handleSearchAction(searchEntry))
+    return
+
+def configureWelcomeLabel(screen):
+    """
+    configure welcome label
+    create label
+    display in top center of screen
+    pack it
+    """
+    welcome_label = Label(screen, text =  "Welcome to the Herbarium!", bg = 'orchid')
+    welcome_label.config(font = ("georgia", 20, "italic bold"))
+    welcome_label.pack()
+    return welcome_label
+
+def configureTextEntry(screen):
+    """
+    configure new entry text entry box
+    create entry box
+    pack it
+    """
+    entry = Entry(screen, width = 20, bg = 'white')
+    entry.pack()
+    return entry
+
+def configureButton(screen, text, command):
+    """
+    create button
+    pack
+    :return:
+    """
+    button = Button(screen, text = text, command = command)
+    button.pack()
+    return
+
+def configureDisplayArea():
+    """
+    create text entry box
+    pack
+    :return:
+    """
+    return
+
+def handleEnterAction(entry):
+    """
+    access text from enter bar
+    assume user isnt an idiot
+    separate values with ", "
+    assign those values to name, locality, and date
+    call saveVariablesToDatabase
+    call searchDatabase with name
+    print that list in display screen
+    :return:
+    """
+    print(entry.text)
+
+    return
+
+def handleSearchAction(search):
+    """
+    access text from search bar
+    use text to call searchDatabase
+    display result in display screen
+    :return:
+    """
+    print(search)
+    return
+
+
+def displayScreen(screen):
+    """
+    display screen
+    """
+    screen.mainloop()
+    return
+
 main()
 
-"""
-herbarium database interactive window
-
-1.set up screen
-    - set up background in pink.
-    - make it a nice lil box
-    - display "welcome to the herbarium!" 
-
-2. userinput
-    -
-    1. search
-        - prompt user to type search word in box
-        - store that info to a variable?
-        - press search
-            -equivalent to pressing 's'
-        - access that info in database
-        - print that info to display area
-    2. enter
-        - prompt user to enter 
-            - name
-            - locality
-            - date
-        store that info in database 
-    3. delete
-        -
-6. display 
-
-7. exit
 
 
-"""
+
 
 
 

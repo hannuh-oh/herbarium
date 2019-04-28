@@ -90,7 +90,6 @@ okay. what do i want to do?
     1. search
         -type search word in box
         -press search
-        
     2. enter
         -
     3. delete
