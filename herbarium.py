@@ -166,7 +166,11 @@ def userExitProgram(cursor):
 
     cursor.close()
     sys.exit()
+"""
 
+this 
+
+"""
 def userDisplayWindow(cursor):
     """
     call set up screen
@@ -262,7 +266,7 @@ def handleEnterAction(entry):
     print that list in display screen
     :return:
     """
-    print(entry.text)
+    print(entry)
 
     return
 
