@@ -47,7 +47,7 @@ def promptUserForCommand(cursor):
     if exit call userExitProgram
     :return:
     """
-    command = input("Press 'E' to enter 'S' to search 'D' to delete 'X' to exit").lower()
+    command = input("Press 'E' to enter 'S' to search 'D' to delete 'X' to exit 'W' for window").lower()
     if command == 'e':
         userEnterNewPlant(cursor)
     elif command == 's':
@@ -166,11 +166,7 @@ def userExitProgram(cursor):
 
     cursor.close()
     sys.exit()
-"""
 
-this 
-
-"""
 def userDisplayWindow(cursor):
     """
     call set up screen
@@ -178,7 +174,7 @@ def userDisplayWindow(cursor):
     call display screen
     """
     screen = setUpScreen()
-    configureInterfaceElements(screen)
+    configureInterfaceElements(screen, cursor)
     displayScreen(screen)
 
     return
@@ -198,7 +194,7 @@ def setUpScreen():
     screen.title("Herbarium")
     return screen
 
-def configureInterfaceElements(screen):
+def configureInterfaceElements(screen, cursor):
     """
     configure welcome label
     configure text entry box
@@ -210,9 +206,10 @@ def configureInterfaceElements(screen):
     """
     configureWelcomeLabel(screen)
     newEntry = configureTextEntry(screen)
-    newButton = configureButton(screen, "New Entry", handleEnterAction(newEntry))
+    newButton = configureButton(screen, "New Entry", handleEnterAction(newEntry, cursor))
     searchEntry = configureTextEntry(screen)
-    searchButton = configureButton(screen, "Search", handleSearchAction(searchEntry))
+    searchButton = configureButton(screen, "Search", handleSearchAction(searchEntry, cursor))
+
     return
 
 def configureWelcomeLabel(screen):
@@ -245,20 +242,22 @@ def configureButton(screen, text, command):
     """
     button = Button(screen, text = text, command = command)
     button.pack()
-    return
+    return button
+
 
 def configureDisplayArea():
     """
-    create text entry box
+    create text display box
     pack
     :return:
     """
     return
 
-def handleEnterAction(entry):
+
+def handleEnterAction(entry, cursor):
     """
     access text from enter bar
-    assume user isnt an idiot
+    assume user isn't an idiot: types in plant, locality, date
     separate values with ", "
     assign those values to name, locality, and date
     call saveVariablesToDatabase
@@ -266,20 +265,22 @@ def handleEnterAction(entry):
     print that list in display screen
     :return:
     """
-    print(entry)
+
 
     return
 
-def handleSearchAction(search):
+def handleSearchAction(search, cursor):
     """
+    wait until button is pressed
     access text from search bar
     use text to call searchDatabase
     display result in display screen
     :return:
     """
-    print(search)
-    return
-
+    name = search.get()
+    searchDatabase(name, cursor)
+    print(name)
+    print(searchDatabase(name, cursor))
 
 def displayScreen(screen):
     """

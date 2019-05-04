@@ -4,8 +4,8 @@
     <list default="true" id="bb1ef3ad-d99c-4faf-99df-7be9b41b2fb0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Herbarium.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Herbarium.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commandline.py" beforeDir="false" afterPath="$PROJECT_DIR$/commandline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/herbarium.py" beforeDir="false" afterPath="$PROJECT_DIR$/herbarium.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myscreen.py" beforeDir="false" afterPath="$PROJECT_DIR$/myscreen.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,8 +18,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/herbarium.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="264" column="20" selection-start-line="264" selection-start-column="20" selection-end-line="264" selection-end-column="20" />
+            <state relative-caret-position="180">
+              <caret line="211" selection-start-line="211" selection-end-line="211" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -35,8 +35,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commandline.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1020">
-              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="484">
+              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
             </state>
           </provider>
         </entry>
@@ -76,10 +76,11 @@
       <list>
         <option value="$PROJECT_DIR$/myScreen" />
         <option value="$PROJECT_DIR$/myScreen.py" />
-        <option value="$PROJECT_DIR$/commandline.py" />
         <option value="$PROJECT_DIR$/database.py" />
         <option value="$PROJECT_DIR$/userinterface.py" />
         <option value="$PROJECT_DIR$/myscreen.py" />
+        <option value="$PROJECT_DIR$/builder.py" />
+        <option value="$PROJECT_DIR$/commandline.py" />
         <option value="$PROJECT_DIR$/herbarium.py" />
       </list>
     </option>
@@ -122,7 +123,28 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.myScreen (1)">
+  <component name="RunManager" selected="Python.builder">
+    <configuration name="builder" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="herbarium" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/builder.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="commandline" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="herbarium" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -207,34 +229,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="myScreen" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="herbarium" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myScreen" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Python.herbarium" />
+        <item itemvalue="Python.builder" />
         <item itemvalue="Python.myScreen (1)" />
         <item itemvalue="Python.commandline" />
         <item itemvalue="Python.database" />
-        <item itemvalue="Python.myScreen" />
       </list>
     </recent_temporary>
   </component>
@@ -284,7 +285,21 @@
       <option name="project" value="LOCAL" />
       <updated>1556464640965</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="the project is cleean">
+      <created>1556471359101</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1556471359101</updated>
+    </task>
+    <task id="LOCAL-00007" summary="some work on the user interface">
+      <created>1556556684571</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1556556684571</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -332,7 +347,8 @@
     <MESSAGE value="database plus tkinter screen" />
     <MESSAGE value="database plus tkinter screen!" />
     <MESSAGE value="the project is cleean" />
-    <option name="LAST_COMMIT_MESSAGE" value="the project is cleean" />
+    <MESSAGE value="some work on the user interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="some work on the user interface" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/myScreen">
@@ -344,16 +360,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Herbarium.sqlite3">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/userinterface.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/commandline.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -369,10 +375,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userinterface.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commandline.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/herbarium.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="264" column="20" selection-start-line="264" selection-start-column="20" selection-end-line="264" selection-end-column="20" />
+        <state relative-caret-position="180">
+          <caret line="211" selection-start-line="211" selection-end-line="211" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

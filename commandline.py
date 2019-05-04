@@ -65,4 +65,14 @@ def main():
 """
 
 
-
+"""
+fetch_entry = entry.get()
+split_entry = fetch_entry.split(',')
+print(split_entry)
+name = split_entry[0]
+locality = split_entry[1]
+date = split_entry[2]
+saveVariablesToDatabase(name, locality, date)
+searchDatabase(name, cursor)
+print(name)
+"""
