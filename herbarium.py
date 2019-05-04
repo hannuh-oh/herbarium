@@ -190,7 +190,6 @@ class Herbarium:
         define color
         create title
         """
-
         self.screen.geometry('600x400')
         self.screen.geometry('+425+125')
         self.screen.configure(background = 'orchid')
@@ -206,57 +205,70 @@ class Herbarium:
         configure display area
         :return:
         """
-        self.configureWelcomeLabel()
-        self.newEntryName = self.configureTextEntry()
-        self.newEntryLocality = self.configureTextEntry()
-        self.newEntryDate = self.configureTextEntry()
-        self.newButton = self.configureButton( "New Entry", self.handleEnterAction)
-        self.searchEntry = self.configureTextEntry()
-        self.searchButton = self.configureButton("Search", self.handleSearchAction)
-        self.configureDisplayArea()
-        self.deleteButton = self.configureButton("Delete", self.handleDeleteAction)
+        welcomeFrame = Frame(self.screen, bg = 'orchid')
+        welcomeFrame.pack()
+        newEntryFrame = Frame(self.screen, bg = 'orchid')
+        newEntryFrame.pack()
+        searchFrame = Frame(self.screen, bg = 'orchid')
+        searchFrame.pack()
+        displayFrame = Frame(self.screen, bg = 'orchid')
+        displayFrame.pack()
+        self.configureWelcomeLabel(welcomeFrame)
+        self.newEntryName = self.configureTextEntry(newEntryFrame, "Name")
+        self.newEntryLocality = self.configureTextEntry(newEntryFrame, "Locality")
+        self.newEntryDate = self.configureTextEntry(newEntryFrame, "Date")
+        self.newButton = self.configureButton(newEntryFrame, "New Entry", self.handleEnterAction)
+        self.searchEntry = self.configureTextEntry(searchFrame, "Search")
+        self.searchButton = self.configureButton(searchFrame, "Search", self.handleSearchAction)
+        self.configureDisplayArea(displayFrame)
+        self.deleteButton = self.configureButton(displayFrame, "Delete", self.handleDeleteAction)
         return
 
-    def configureWelcomeLabel(self):
+    def configureWelcomeLabel(self, parent):
         """
         configure welcome label
         create label
         display in top center of screen
         pack it
         """
-        welcome_label = Label(self.screen, text =  "Welcome to the Herbarium!", bg = 'orchid')
+        welcome_label = Label(parent, text =  "Welcome to the Herbarium!", bg = 'orchid')
         welcome_label.config(font = ("georgia", 20, "italic bold"))
         welcome_label.pack()
         return welcome_label
 
-    def configureTextEntry(self):
+    def configureTextEntry(self, parent, title):
         """
         configure new entry text entry box
         create entry box
         pack it
         """
-        entry = Entry(self.screen, width = 20, bg = 'white')
-        entry.pack()
+        entryFrame = Frame(parent, bg = 'orchid')
+        entryFrame.pack()
+        label = Label(entryFrame, text = title)
+        label.pack(side = LEFT)
+        entry = Entry(entryFrame, width = 20, bg = 'white')
+        entry.pack(side = RIGHT, fill = X,)
         return entry
 
-    def configureButton(self, text, command):
+    def configureButton(self, parent, text, command):
         """
         create button
         pack
         :return:
         """
-        button = Button(self.screen, text = text, command = command)
+
+        button = Button(parent, text = text, command = command)
         button.pack()
         return button
 
 
-    def configureDisplayArea(self):
+    def configureDisplayArea(self, parent):
         """
         create text display box
         pack
         :return:
         """
-        self.displayArea = Listbox(self.screen, width=30, height=10)
+        self.displayArea = Listbox(parent, width=30, height=10)
         self.displayArea.pack()
         return
 
