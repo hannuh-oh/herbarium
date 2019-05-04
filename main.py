@@ -14,5 +14,4 @@ def main():
     cursor = connection.cursor()
     newHerbs = herbarium.Herbarium(cursor, connection)
 
-
 main()
