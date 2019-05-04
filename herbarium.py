@@ -314,11 +314,11 @@ class Herbarium:
         return
 
     def handleDeleteAction(self):
-        self.displayArea.delete(ANCHOR)
         result = self.displayArea.get(ANCHOR)
         print("You have deleted this entry:", result)
         delete_query = f" DELETE FROM '{self.table}' WHERE id = '{result[0]}'"
         self.cursor.execute(delete_query)
+        self.displayArea.delete(ANCHOR)
         return
 
     def displayScreen(self):
