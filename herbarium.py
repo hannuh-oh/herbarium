@@ -14,6 +14,7 @@ class Herbarium:
     searchButton = None
     displayArea = None
     deleteButton = None
+    table = 'plants'
 
     def __init__(self, cursor, connection):
         self.cursor = cursor
@@ -29,7 +30,8 @@ class Herbarium:
         :return:
         """
         self.cursor.execute('''
-        CREATE TABLE IF NOT EXISTS project(
+        CREATE TABLE IF NOT EXISTS '''
+        + self.table + '''(
         id integer PRIMARY KEY,
         name text NOT NULL,
         locality text,
@@ -108,7 +110,7 @@ class Herbarium:
         if search_term == "":
             return self.returnAllEntries()
         else:
-            query = f"SELECT name, locality, date, id FROM project WHERE name='{search_term}'"
+            query = f"SELECT name, locality, date, id FROM '{self.table}' WHERE lower(name)='{search_term.lower()}'"
             self.cursor.execute(query)
             return self.cursor.fetchone()
 
@@ -120,7 +122,7 @@ class Herbarium:
         :param cursor:
         :return:
         """
-        query = "SELECT * FROM project"
+        query = f"SELECT * FROM '{self.table}'"
         self.cursor.execute(query)
         result = self.cursor.fetchall()
         return result
@@ -142,7 +144,7 @@ class Herbarium:
             return
         confirmation = input("Do you wish to proceed? Y/N").lower()
         if confirmation == 'y':
-            delete_query = f" DELETE FROM project WHERE id = '{result[-1]}'"
+            delete_query = f" DELETE FROM '{self.table}' WHERE id = '{result[-1]}'"
             self.cursor.execute(delete_query)
 
         return
@@ -154,7 +156,7 @@ class Herbarium:
         2. execute query
         """
 
-        query = f" INSERT INTO project(name, locality, date) VALUES ('{name}', '{locality}', '{date}') "
+        query = f" INSERT INTO '{self.table}' (name, locality, date) VALUES ('{name}', '{locality}', '{date}') "
         self.cursor.execute(query)
 
         return 0
@@ -244,9 +246,9 @@ class Herbarium:
         """
         entryFrame = Frame(parent, bg = 'orchid')
         entryFrame.pack()
-        label = Label(entryFrame, text = title)
+        label = Label(entryFrame, width = 5, text = title, bg = 'orchid')
         label.pack(side = LEFT)
-        entry = Entry(entryFrame, width = 20, bg = 'white')
+        entry = Entry(entryFrame, bg = 'white')
         entry.pack(side = RIGHT, fill = X,)
         return entry
 
@@ -315,7 +317,7 @@ class Herbarium:
         self.displayArea.delete(ANCHOR)
         result = self.displayArea.get(ANCHOR)
         print("You have deleted this entry:", result)
-        delete_query = f" DELETE FROM project WHERE id = '{result[0]}'"
+        delete_query = f" DELETE FROM '{self.table}' WHERE id = '{result[0]}'"
         self.cursor.execute(delete_query)
         return
 
